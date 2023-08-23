@@ -1,0 +1,116 @@
+body{
+	min-width:1920px;
+}
+
+body {
+    text-align: center;  /*    가운데 정렬 적용*/   
+
+    
+}
+
+ul {
+    background-color: white;
+    padding: 30px;
+    border-bottom: 3px solid  #ffe699;
+    
+}
+
+li {
+    display: inline;
+    padding: 30px 60px;
+    font-family: 'baemin';
+}
+
+a {			
+    color: black;			
+    text-decoration: none;
+    line-height:1;	
+    font-size: 22px; /* 글자 크기 조정 */
+}
+@font-face {
+    font-family:'baemin';
+    src: url('/target/font1/BMDOHYEON_ttf.ttf')  format('truetype');
+}
+    
+
+
+
+
+
+/* 로고 이미지 스타일 */
+.logo {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    width: 150px; /* 사진 너비 조정 */
+    height: 90px; /* 사진 높이 조정 */
+}
+
+
+
+
+/*강아지사진 위치 조정*/
+.rounded-box {
+    
+    width: 1300px;
+    height: 200px;
+    
+    margin: 0 auto; /* 수평 가운데 정렬 */
+    margin-top: 50px; /* 위쪽 여백 추가 */
+    position: relative; /* 상대 위치 설정 */
+}
+
+/* 사진 로고 스타일 */
+.centered-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1350px; /* Adjusted width */
+    height: 190px; /* 사진 높이 조정 */
+}
+/*사진 로고 마진*/
+.logo{
+margin-left:90px;
+}
+
+/* 푸터 */
+footer {
+    text-align : left;
+    background-color : #fff2cc;
+    position : fixed;
+    left : 0px;
+    bottom : 0px;
+    width : 100%;
+    height : 100px;
+}
+.foo {
+    position: relative;
+    margin-left: 10px;
+    margin-top: 18px;
+    clear: both; /* Add this to prevent overlap with the image */
+}
+
+
+
+/* 사진 강아지 스타일 */
+ .centered-image {
+            position: absolute;
+           top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+             width: 1280px; /* Adjusted width */
+           height: 250px; /* 사진 높이 조정 */
+}
+.com{
+margin-left:1px;
+}
+.log{
+margin-left:0.1px;
+}
+button{
+    size: 40px;
+}
+#writeBtn{
+	background-color: darkseagreen;
+}
