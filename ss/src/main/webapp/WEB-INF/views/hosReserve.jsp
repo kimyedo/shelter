@@ -25,6 +25,16 @@
         	color : red;
         }
     </style>
+    
+    <script>
+		$(() => {
+			//로그인 실패 메세지
+			let m = '${msg}';
+			if(m != '') {
+				alert(m)
+			}
+		})
+	</script>
 </head>
 <body>
     <form id="form" action="/reserves_hospital/check" method="POST">
@@ -67,11 +77,11 @@
         dateFormat: "Y-m-d",
     });
 
-    const minHour = 9;
-    const maxHour = 18;
-    const minMin = 0;
-    const maxMin = 30;
-    const interval = 45;
+    const minHour = ${hos.hoshour};
+    const maxHour = ${hos.hoshour2};
+    const minMin = ${hos.hosmin};
+    const maxMin = ${hos.hosmin2};
+    const interval = ${hos.mincheck};
 
     // Populate minute select options
     const minSelect = document.getElementById("minSelect");
@@ -82,15 +92,15 @@
         populateMinuteSelect();
     });
 
-    //const reservedTimes = [
-<%--         <% for (String reservedTime : ${hoslist.checkDateTime}) { %> --%>
-<%--             "<%= reservedTime %>", --%>
-<%--         <% } %> --%>
-    //];
-
     const reservedTimes = [
-        "2023-08-24 09:00:00", "2023-08-24 09:45:00", "2023-08-24 10:30:00", "2023-08-25 09:00:00"
+        <c:forEach items="${hoslist}" var="dto" varStatus="status">
+            "<c:out value="${dto.checkdate}" />"<c:if test="${not status.last}">,</c:if>
+        </c:forEach>
     ];
+
+//     const reservedTimes = [
+//         "2023-08-24 09:00:00", "2023-08-24 09:45:00", "2023-08-24 10:30:00", "2023-08-25 09:00:00"
+//     ];
 
     // ...
 
