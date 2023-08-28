@@ -25,12 +25,7 @@ public class MemberController {
 		@Autowired
 		private MemberService mSer;
 		
-	  	@GetMapping("/login")
-		public String login() {
-			log.info("로그인 화면(폼)");
-	  		return "login"; //login.jsp
-		}
-		@PostMapping("/login")
+		@GetMapping("/login")
 		//public String login(@RequestParam String m_id, 
 		//					@RequestParam("m_pwd") String pw) {
 		public String login(@RequestParam HashMap<String,String> member, RedirectAttributes rttr ,Model model, HttpSession session) {

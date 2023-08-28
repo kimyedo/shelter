@@ -26,15 +26,23 @@
 
 
 
-<section>
-        <div class="content">
-            <form action="/member/login" method="post" class="login-form">
- 				<h2 class="login-header">로그인</h2>
- 				<input type="text" class="login-input" name="id" autofocus required placeholder="아이디">
- 				<input type="password" class="login-input" name="pw" required placeholder="비밀번호">
- 				<input type="submit" class="login-btn" value="로그인">
- 				<button onclick="location.href='/member/join'">회원가입</button>           
+	<section>
+         <div class="box">
+            <form action="/member/login" method="get" id = "1" class="login-form 1">
+ 				<h2 class="login-header">로그인</h2><br><br>
+ 				<input type="text" class="login-input" name="id" autofocus required placeholder="아이디"><br><br>
+ 				<input type="password" class="login-input" name="pw" required placeholder="비밀번호"><br><br><br>	
+ 				<input type="submit" class="login-btn" value="로그인" style="color: white;" margin-top=:10px;><br><br><br><br>
+ 				<button onclick="location.href='/member/join'" class="membership"style="color: white;">회원가입</button>
+ 				     
             </form>
+            
+           	<form id = "2" class = "1" action = "/hos/login" method = "get">
+           	 	<h2 class="login-header">로그인</h2><br><br>
+ 				<input type="text" class="login-input" name="code" autofocus required placeholder="코드"><br><br>
+ 				<input type="submit" class="login-btn" value="로그인" style="color: white;" margin-top=:10px;><br><br><br><br>
+ 				<button onclick="location.href='/hos/join'"class="membership2"style="color: white;">회원가입</button>
+			</form>
         </div>
     </section>
 

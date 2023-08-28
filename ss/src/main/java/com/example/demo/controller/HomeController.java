@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.ShelterService;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller 
 public class HomeController {
 	
@@ -34,7 +36,11 @@ public class HomeController {
   		return "shop";
   	}
 
-	
+  	@GetMapping("/login")
+	public String login() {
+		log.info("로그인 화면(폼)");
+  		return "login"; //login.jsp
+	}
   	
   	
 }

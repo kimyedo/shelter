@@ -21,8 +21,6 @@
 		  </ul>
 		</li>
 
-	<li><a href="/walk">산책로</a></li>
-
 		<li><a href="/hospital">동물병원</a></li>
 			
 		<li><a href="/shop">쇼핑</a></li>
@@ -31,7 +29,7 @@
         				
 		<li><a href="/shelter/list">유기견보호소</a></li>
 
-		<li><a href="/member/login">로그인</a></li>
+		<li><a href="/login">로그인</a></li>
 
 		
 		
