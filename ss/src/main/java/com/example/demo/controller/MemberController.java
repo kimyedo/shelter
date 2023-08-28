@@ -157,6 +157,81 @@ public class MemberController {
 			return "MemberUpdate";
 		}
 	}
+	@GetMapping("/findPw1")
+	public String findPwForm(HttpSession session) {
+		return "findPw1";
+	}
 	
+	@PostMapping("/findPw1")
+	public String findPwidCheck(MemberDto mDto,HttpSession session,RedirectAttributes rttr) {
+		boolean result;
+		try {
+			result = mSer.findPwidCheck(mDto.getId());
+			
+			if(result) {
+//				model.addAttribute("msg","회원가입 성공");
+				rttr.addFlashAttribute("msg","회원정보 수정 성공");
+				//mDto = mSer.login(member);
+				session.setAttribute("id", mDto.getId());
+//				return "redirect:/";
+				return "redirect:/member/findPw2";
+				//return "redirect:/"; //redirect:/url
+			} else {
+				rttr.addFlashAttribute("msg","회원정보 수정 실패");
+				log.info("회원정보 수정 예외 처리");
+				return "findPw1";
+			}
+		} catch (Exception e) {
+			rttr.addFlashAttribute("msg","회원정보 수정 실패");
+			log.info("회원정보 수정 예외 처리");
+			return "findPw1";
+		}
+	}
+	
+	
+	
+	
+	
+	@GetMapping("/findPw2")
+	public String pwChange() {
+		return "findPw2";
+	}
+	
+	@PostMapping("/findPw2")
+	public String pwChange(MemberDto mDto, HttpSession session) throws IOException{
+		boolean result;
+		
+		try {
+			result = mSer.pwChange(mDto);
+			
+			if(result) {
+//				model.addAttribute("msg","회원가입 성공");
+//				rttr.addFlashAttribute("msg","회원정보 수정 성공");
+//				return "redirect:/";
+				return "redirect:/member/login";
+				//return "redirect:/"; //redirect:/url
+			} else {
+	//			rttr.addFlashAttribute("msg","회원정보 수정 실패");
+				log.info("회원정보 수정 예외 처리");
+				return "redirect:/";
+			}
+		} catch (Exception e) {
+		//	rttr.addFlashAttribute("msg","회원정보 수정 실패");
+			log.info("회원정보 수정 예외 처리");
+			return "redirect:/";
+		}
+	}
+
+	@GetMapping("/list")
+	public String profile(HttpSession session) {
+		MemberDto mDto = (MemberDto) session.getAttribute("mb");
+		
+		if(mDto != null) {
+//			session.setAttribute("mb", mDto);
+			return "profile";
+		} else {
+			return "redirect:/member/login";
+		}
+	}
 	
 }
