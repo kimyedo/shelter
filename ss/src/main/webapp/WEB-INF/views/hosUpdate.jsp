@@ -43,7 +43,24 @@
 		<input type="text" id="hosphone1" oninput="formatPhoneNumberPart(this); formatPhoneNumber();" oninput="formatPhoneNumber()" maxlength="4" required>
 		<input type="text" id="hosphone2" oninput="formatPhoneNumberPart(this); formatPhoneNumber();" oninput="formatPhoneNumber()" maxlength="4" required><br>
 	    <input type="hidden" id="hosNumber" name="hosphone">
-	    <input type="text" id="hosaddr" name="hosaddr" placeholder="병원주소" value="${hos.hosaddr}" readonly><br>
+	    <input type="hidden" name = "hosaddr" id = "addr">
+	    <select id ="hosaddr">
+	    	<option value="서울">서울</option>
+	    	<option value="부산">부산</option>
+	    	<option value="인천">인천</option>
+	    	<option value="대구">대구</option>
+	    	<option value="대전">대전</option>
+	    	<option value="광주">광주</option>
+	    	<option value="울산">울산</option>
+	    	<option value="세종">세종</option>
+	    	<option value="경기">경기</option>
+	    	<option value="충청">충청</option>
+	    	<option value="전라">전라</option>
+	    	<option value="경상">경상</option>
+	    	<option value="강원">강원</option>
+	    	<option value="제주">제주</option>
+	    </select>
+	    <input type="text" id="hosaddr2" placeholder="병원 상세주소" value = "#{hos.hosaddr}" required><br>
 	    <h3>영업시간 선택</h3>
 	    시작시간:<select name="hoshour" id="hoshour">
 			<% for (int i = 0; i < 24; i++) { %>
@@ -124,6 +141,10 @@
 	        const hosmin = $('#hosmin').val();
 	        const hoshour2 = $('#hoshour2').val();
 	        const hosmin2 = $('#hosmin2').val();
+	        
+	        const hosaddr = $('#hosaddr').val();
+	        const hosaddr2 = $('#hosaddr2').val();
+	        $('#addr').val(hosaddr + " " + hosaddr2);
 
 	        // hosphone1과 hosphone2의 길이 검사
 	        if (hosphone1.length < 3 || hosphone2.length < 4) {
