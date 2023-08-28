@@ -1,5 +1,7 @@
 package com.example.demo.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -26,7 +28,10 @@ public interface hosDao {
     @Update("update a_hos_plus set code = #{code},hosphone = #{hosphone},hoshour = #{hoshour},hosmin = #{hosmin},hoshour2 = #{hoshour2},hosmin2 = #{hosmin2},mincheck = #{mincheck},hostype = #{hostype} where code = #{BeforeCode}")
 	public boolean h_u_profile(hosDto hDto);
     
-    @Select("select code,hostitle,hosphone,hosaddr,hoshour,hoshour2,hosmin,hosmin2,mincheck,hostype from a_hos_plus where code = #{code}")
+    @Select("select code,hostitle,hosphone,hosaddr,hoshour,hoshour2,hosmin,hosmin2,mincheck,hostype,sysfilename from a_hos_plus where code = #{code}")
 	public hosDto hosDataSelect(hosDto hDto);
+    
+    @Update("update a_hos_plus set OriFileName = #{oriFileName}, SysFileName = #{sysFileName}, filePath = #{filePath} where code = #{code}")
+	public boolean fileInsertMap(Map<String, String> fMap);
     
 }

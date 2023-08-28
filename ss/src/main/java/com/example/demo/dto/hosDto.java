@@ -16,7 +16,8 @@ public class hosDto {
 	private int hosmin2;
 	private int mincheck;
 	private String hostype;
-	private String fileName;
+	private String OriFileName;
+	private String SysFileName;
 	private String filePath;
 	
 	//세션에 저장된 code를 hidden에 숨겨서 가져오는 방식으로 업데이트 하기 위해 추가

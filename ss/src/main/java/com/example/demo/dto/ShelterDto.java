@@ -8,14 +8,14 @@ import lombok.Data;
 public class ShelterDto {
 
 	private int snum;
-	private String id;
-	private String name;
 	private String s_title;
-	private String s_content;
-	private String image;
 	private Date s_date;
+	private Date s_date2;
+	private int age;
+	private String gender;
+	private String s_weight;
 	private int s_views;
-	private String filename;
-	private String filepath;
-	
+	private String OriFileName;
+	private String SysFileName;
+	private String filePath;
 }

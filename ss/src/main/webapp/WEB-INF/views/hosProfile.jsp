@@ -15,6 +15,7 @@
 	<div>종료시간:<span id="end-time"></span></div>
 	<div>예약단위:${hos.mincheck}</div>
 	<div>병원종류:${hos.hostype}</div>
+	<div>병원이미지:<img src="${imageUrl}"></div>
 	<div><a href="/profile/hos/update">수정</a></div>
 	
 	<script>

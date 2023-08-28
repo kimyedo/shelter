@@ -19,7 +19,7 @@
 	</script>
 
 <body>
-	<form action="/hos/join" method="post">
+	<form action="/hos/join" method="post" enctype="multipart/form-data">
 		<input type="text" name="code" id="code" placeholder="코드" required><br>
 		<input type="button" id="codeCheck" value="코드확인"><br>
 		<input type="text" name="hostitle" placeholder="병원명" required><br>
@@ -76,6 +76,9 @@
 	    	<option value = "일반">일반</option>
 	    	<option value = "특수">특수</option>
 	    </select><br>
+	    <label for = "attachments">업로드</label>
+		<input type = "file" name="attachments" id="attachments" accept=".jpg, .jpeg, .png, .gif">
+        <input type = "text" class="upload-name" value="파일선택" readonly><br>
 	    <input type="submit" id="submit" value="가입" disabled>
 	</form>
 	
@@ -104,6 +107,23 @@
 				});
 			});
 
+		$('#attachments').on('change', function() {
+			//파일 선택 후 열기 버튼을 누르면 change event 발생
+			console.log($('#attachments'));
+			let files = $('#attachments')[0].files;
+			console.log(files);
+			
+			let fileName = '';
+			if(files.length > 1) {
+				fileName = files[0].name + ' 외 ' + (files.length-1) + '개';
+			} else if(files.length == 1) {
+				fileName = files[0].name;
+			} else {
+				fileName = "파일 선택";
+			}
+			$(".upload-name").val(fileName);
+		});
+		
     	// 전화번호 부분을 합치는 함수
 	    function formatPhoneNumber() {
 	        const prefix = $('#hosphone').val();
