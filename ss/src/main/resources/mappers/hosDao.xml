@@ -2,7 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.example.demo.dao.hosDao">
-	<select id="reserve_hos_select" parameterType="hosCheckDto" resultType="boolean">
-		select count(*) from a_hos_check where checkdate = #{checkDateTime, jdbcType=TIMESTAMP}
+	<select id="reserve_hos_select" parameterType="hosCheckDto"
+		resultType="boolean">
+		select count(*) from a_hos_check where checkdate =
+		#{checkDateTime, jdbcType=TIMESTAMP}
 	</select>
+
+	<select id="findHospitalList" parameterType="MemberDto"
+		resultType="hosDto">
+		SELECT * FROM a_hos_plus
+		ORDER BY CASE WHEN HOSADDR LIKE
+		CONCAT(#{addr}, '%') THEN 0 ELSE 1 END, HOSADDR ASC
+	</select>
+
+	<select id="reserveStart" parameterType="String"
+		resultType="hosDto">
+		SELECT * FROM a_hos_plus WHERE HOSTITLE LIKE '%' || #{hostitle} || '%'
+	</select>
+
+
 </mapper>

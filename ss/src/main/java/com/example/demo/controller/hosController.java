@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.demo.dto.MemberDto;
 import com.example.demo.dto.hosCheckDto;
 import com.example.demo.dto.hosDto;
 import com.example.demo.service.hosService;
@@ -104,6 +106,27 @@ public class hosController {
     @GetMapping("/profile/hos/update")
     public String h_pro_update() {
     	return "hosUpdate";
+    }
+    
+    @GetMapping("/hospital")
+    public String hospital(HttpSession session, Model model) {
+    	MemberDto mDto = (MemberDto) session.getAttribute("mb");
+    	log.info("mb:{}", mDto);
+    	List<hosDto> hList = hSer.findHospitalList(session, model);
+    	
+    	model.addAttribute("hos",hList);
+    	return "hospital";
+    }
+    
+    @GetMapping("reserves_List")
+    public String reserves_List(HttpSession session, Model model, RedirectAttributes rttr) {
+    	MemberDto mDto = (MemberDto) session.getAttribute("mb");
+    	log.info("reserves_List");
+    	if(mDto == null) {
+    		rttr.addFlashAttribute("showAlert", true);
+    		return "redirect:/hospital";
+    	}
+    	return "hosReservesList";
     }
     
     @GetMapping("/reserves_hospital")

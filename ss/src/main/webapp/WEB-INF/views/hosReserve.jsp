@@ -6,11 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css">
-
+    <title>병원예약</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="/js/jquery-3.7.0.min.js"></script>
+     <link rel="stylesheet" href="/css/style.css">
     <style>
         #form {
             width : 350px;
@@ -37,6 +37,9 @@
 	</script>
 </head>
 <body>
+<header>
+	<jsp:include page="header.jsp"></jsp:include>
+</header>
     <form id="form" action="/reserves_hospital/check" method="POST">
         <legend style = "font-size : 22px; text-align : center;">${hos.hostitle} 예약</legend>
         <div class = "line">
@@ -98,9 +101,6 @@
         </c:forEach>
     ];
 
-//     const reservedTimes = [
-//         "2023-08-24 09:00:00", "2023-08-24 09:45:00", "2023-08-24 10:30:00", "2023-08-25 09:00:00"
-//     ];
 
     // ...
 
@@ -192,5 +192,8 @@
         }
     });
 </script>
+<footer>
+	<jsp:include page="footer.jsp"></jsp:include>
+</footer>
 </body>
 </html>

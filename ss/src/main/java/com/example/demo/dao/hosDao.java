@@ -1,12 +1,17 @@
 package com.example.demo.dao;
 
+<<<<<<< HEAD
 import java.util.Map;
+=======
+import java.util.List;
+>>>>>>> origin/test2
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.example.demo.dto.MemberDto;
 import com.example.demo.dto.hosCheckDto;
 import com.example.demo.dto.hosDto;
 
@@ -31,7 +36,13 @@ public interface hosDao {
     @Select("select code,hostitle,hosphone,hosaddr,hoshour,hoshour2,hosmin,hosmin2,mincheck,hostype,sysfilename from a_hos_plus where code = #{code}")
 	public hosDto hosDataSelect(hosDto hDto);
     
+<<<<<<< HEAD
     @Update("update a_hos_plus set OriFileName = #{oriFileName}, SysFileName = #{sysFileName}, filePath = #{filePath} where code = #{code}")
 	public boolean fileInsertMap(Map<String, String> fMap);
     
+=======
+    public List<hosDto> findHospitalList(MemberDto mDto);
+    
+    public hosDto reserveStart();
+>>>>>>> origin/test2
 }
