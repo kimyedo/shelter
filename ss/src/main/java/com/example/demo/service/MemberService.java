@@ -62,4 +62,22 @@ public class MemberService {
 	}
 	
 	
+	public boolean findPwidCheck(String id) {
+		return mDao.findPwidCheck(id);
+			}
+		
+		public boolean pwChange(MemberDto mDto) {
+			BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
+			mDto.setPw(pwEncoder.encode(mDto.getPw()));
+			return mDao.pwChange(mDto);
+		}
+	
+	
+	
+		public List<MemberDto> findMemberList() {
+			List<MemberDto> mList=mDao.findMemberList();
+			return mList;
+			}
+	
+	
 }

@@ -24,4 +24,13 @@ public interface MemberDao {
 	@Insert("INSERT INTO MEMBER(id,pw,name,birth,addr,email,phone,gender,type) VALUES(#{id},#{pw},#{name},#{birth},#{addr},#{email},#{phone},#{gender},#{type})")
 	boolean join(MemberDto mDto);
 	
+	@Select("select count(*) from member where id=#{id}")
+	boolean findPwidCheck(String id);
+
+	@Update("update member set pw=#{pw} where id=#{id}")
+	boolean pwChange(MemberDto mDto);
+
+	@Select("SELECT * FROM MEMBER WHERE ID=#{id}")
+	List<MemberDto> findMemberList();
+	
 }
