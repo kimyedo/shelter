@@ -1,10 +1,13 @@
 package com.example.demo.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.example.demo.dto.MemberDto;
 import com.example.demo.dto.hosCheckDto;
 import com.example.demo.dto.hosDto;
 
@@ -29,4 +32,7 @@ public interface hosDao {
     @Select("select code,hostitle,hosphone,hosaddr,hoshour,hoshour2,hosmin,hosmin2,mincheck,hostype from a_hos_plus where code = #{code}")
 	public hosDto hosDataSelect(hosDto hDto);
     
+    public List<hosDto> findHospitalList(MemberDto mDto);
+    
+    public hosDto reserveStart();
 }

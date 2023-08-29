@@ -32,7 +32,11 @@ a {
     src: url('/target/font1/BMDOHYEON_ttf.ttf')  format('truetype');
 }
     
-
+/* hospital.jsp에 사용한 forEach의 스크롤 바 생성 css */
+.scrollable-container {
+    max-height: 400px; /* 최대 높이 지정 */
+    overflow-y: auto; /* 내용이 컨테이너 크기를 초과하는 경우에만 스크롤바 표시 */
+}
 
 
 

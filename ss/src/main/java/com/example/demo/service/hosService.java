@@ -1,12 +1,17 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.example.demo.dao.hosDao;
+import com.example.demo.dto.MemberDto;
 import com.example.demo.dto.hosCheckDto;
 import com.example.demo.dto.hosDto;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -42,5 +47,18 @@ public class hosService {
 
 	public hosDto hosDataSelect(hosDto hDto) {
 		return hDao.hosDataSelect(hDto);
+	}
+	
+	public List<hosDto> findHospitalList(HttpSession session, Model model) {
+		log.info("findHospitalList");
+		MemberDto mDto = (MemberDto)session.getAttribute("mb");
+    	if(mDto != null) {
+    		return hDao.findHospitalList(mDto);
+    	}else {
+    		mDto = new MemberDto();
+    		mDto.setAddr("인천");
+    		return hDao.findHospitalList(mDto);
+    	}
+    	
 	}
 }
