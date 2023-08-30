@@ -123,17 +123,15 @@ table {
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
 	
-
       <input type="text" class="search-txt" name=""placeholder="동물 이름을 입력하세요"> <button id="search-btn">검색</button>
 
 <!-- 리스트 반복문  -->
     <c:forEach items="${AcList}" var="auction" varStatus="status">
 			    <c:choose>
 			        <c:when test="${auction.sysFileName != null}">
-			            <img src="${auction.sysFileName}" />      
+			            <img src="${auction.sysFileName}" />
 			        </c:when>
 			        <c:otherwise>
-			            이미지가 없을 경우 표시할 내용
 			            <p>No Image Available</p>
 			        </c:otherwise>
 			    </c:choose>   
@@ -159,7 +157,6 @@ table {
 
 											<%-- </c:forEach> --%>
 										</c:if>
-                </p>
                 <button type="button" class="btn btn-outline-success">입찰</button>
          
 	</c:forEach>
@@ -175,5 +172,7 @@ table {
 		location.href = '/write'
 	})
 	</script>
+	
+	<script src="/js/header.js"></script>
 </body>
 </html>

@@ -24,124 +24,124 @@
 
 </head>
 <style>
-	/*로그인 헤더*/
-	.login-header{
-		font-size: 37px; /*글씨크기 */
-	    font-weight: bold;	/*굵게 */
-	}
-	/*아이디 상자 크기*/
-	.login-input{
-	width: 60%;/*넓이*/
-	height: 42px;/*높이*/
+/*로그인 헤더*/
+.login-header{
+	font-size: 37px; /*글씨크기 */
+    font-weight: bold;	/*굵게 */
+}
+/*아이디 상자 크기*/
+.login-input{
+width: 60%;/*넓이*/
+height: 42px;/*높이*/
+
+}
+/* 버튼 위치*/
+.button-container {
+    position: fixed;
+    bottom: 739px;
+    right: 677PX;
+ 	display: flex;
+ 
+}
+
+    
+    
+/*버튼 너비,높이*/
+.button {
+	background-color : white;
+	color:black;
+	width: 232px; /* 회원,비회원 버튼 너비 조정 */
+    height: 55px;  /* 회원,비회원 버튼 높이 조정 */
+     font-weight: bold;
+}
+/*버튼*/
+.active {
+	background-color : #006600;
+	color:white;
+}
+ /*상자 위치 조정*/
+  .box{
+ 	position: fixed;
+	top: 25%;
+	left: 40%;
+	height: auto;
+	width: 25%; /* 너비 조정 */
+	padding: 20px; /* 상자 내부의 간격을 위한 패딩 추가 */
+	background-color: whitesmoke; /* 배경색 설정 */
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 	
-	}
-	/* 버튼 위치*/
-	.button-container {
-	    position: fixed;
-	    bottom: 739px;
-	    right: 677PX;
-	 	display: flex;
-	 
-	}
 	
-	    
-	    
-	/*버튼 너비,높이*/
-	.button {
-		background-color : white;
-		color:black;
-		width: 232px; /* 회원,비회원 버튼 너비 조정 */
-	    height: 55px;  /* 회원,비회원 버튼 높이 조정 */
-	     font-weight: bold;
-	}
-	/*버튼*/
-	.active {
-		background-color : #006600;
-		color:white;
-	}
-	 /*상자 위치 조정*/
-	  .box{
-	 	position: fixed;
-		top: 25%;
-		left: 40%;
-		height: auto;
-		width: 25%; /* 너비 조정 */
-		padding: 20px; /* 상자 내부의 간격을 위한 패딩 추가 */
-		background-color: whitesmoke; /* 배경색 설정 */
-		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-		
-		
-	}
+}
+
+ 
+
+/*로그인 버튼 위치 */
+.login-btn{
+   position: fixed; 
+    top: 45px;   
+    left: 23%;     
+    transform: translateX(-50%);
+  
 	
-	 
-	
-	/*로그인 버튼 위치 */
-	.login-btn{
-	   position: fixed; 
-	    top: 45px;   
-	    left: 23%;     
-	    transform: translateX(-50%);
-	  
-		
-	    
-	}
-	/*로그인 버튼 모양*/
-	 .login-btn{
-	 	text-align: center;
-	    background: whitesmoke;
-	    position: relative;
-	    border: none;
-	    display: inline-block;
-	    padding: 11px 80px;/*버튼 높이,넓이*/
-	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-	    text-decoration: none;
-	    font-weight: 600;/*글자크기*/
-	    transition: 0.25s;
-	   	background-color:#006600/*버튼컬러*/
-	   	
-	    
-	}
-	/*회원가입 일반회원 버튼 모양*/
-	.membership{
-	    position: relative;
-	    border: none;
-	    display: inline-block;
-	    padding: 5px 12px;/*버튼 높이,넓이*/
-	    font-family: "paybooc-Light", sans-serif;
-	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-	    text-decoration: none;
-	    font-weight: 400;/*글자 굵기*/
-	    font-size:13px;/*글자 크기*/   
-	    transition: 0.25s;
-	   	background-color:#006600;/*버튼컬러*/
-	}
-	/*회원가입 병원회원 버튼 모양*/
-	.membership2{
-	    position: relative;
-	    border: none;
-	    display: inline-block;
-	    padding: 5px 12px;/*버튼 높이,넓이*/
-	    font-family: "paybooc-Light", sans-serif;
-	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-	    text-decoration: none;
-	    font-weight: 400;/*글자 굵기*/
-	    font-size:13px;/*글자 크기*/   
-	    transition: 0.25s;
-	   	background-color:#006600;/*버튼컬러*/
-	
-	}
-	/*회원가입 병원회원 버튼 위치 */
-	.membership2{
-	position:absolute;
-	top:50%;
-	right:22.5%;
-	}
-	/*회원가입 일반회원 버튼 위치 */
-	.membership{
-	position:absolute;
-	top:230px;
-	right:115px;
-	}
+    
+}
+/*로그인 버튼 모양*/
+ .login-btn{
+ 	text-align: center;
+    background: whitesmoke;
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 11px 80px;/*버튼 높이,넓이*/
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;/*글자크기*/
+    transition: 0.25s;
+   	background-color:#006600/*버튼컬러*/
+   	
+    
+}
+/*회원가입 일반회원 버튼 모양*/
+.membership{
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 5px 12px;/*버튼 높이,넓이*/
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 400;/*글자 굵기*/
+    font-size:13px;/*글자 크기*/   
+    transition: 0.25s;
+   	background-color:#006600;/*버튼컬러*/
+}
+/*회원가입 병원회원 버튼 모양*/
+.membership2{
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 5px 12px;/*버튼 높이,넓이*/
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 400;/*글자 굵기*/
+    font-size:13px;/*글자 크기*/   
+    transition: 0.25s;
+   	background-color:#006600;/*버튼컬러*/
+
+}
+/*회원가입 병원회원 버튼 위치 */
+.membership2{
+position:absolute;
+top:50%;
+right:22.5%;
+}
+/*회원가입 일반회원 버튼 위치 */
+.membership{
+position:absolute;
+top:230px;
+right:115px;
+}
 </style>
 
 <body>
@@ -185,24 +185,25 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 </footer>
 <script>
-	$('#button1').addClass('active');
+$('#button1').addClass('active');
+$('#2').hide();
+$('#button1').click(()=>{
+	$('#1').show();
 	$('#2').hide();
-	$('#button1').click(()=>{
-		$('#1').show();
-		$('#2').hide();
-		$('.mem').show();
-		$('.hos').hide();
-		$('#button1').addClass('active');
-		$('#button2').removeClass('active');		
-	})
-	$('#button2').click(()=>{
-		$('#2').show();
-		$('#1').hide();
-		$('.mem').hide();
-		$('.hos').show();
-		$('#button1').removeClass('active');
-		$('#button2').addClass('active');
-	})
+	$('.mem').show();
+	$('.hos').hide();
+	$('#button1').addClass('active');
+	$('#button2').removeClass('active');		
+})
+$('#button2').click(()=>{
+	$('#2').show();
+	$('#1').hide();
+	$('.mem').hide();
+	$('.hos').show();
+	$('#button1').removeClass('active');
+	$('#button2').addClass('active');
+})
 </script>
+<script src="/js/header.js"></script>
 </body>
 </html>

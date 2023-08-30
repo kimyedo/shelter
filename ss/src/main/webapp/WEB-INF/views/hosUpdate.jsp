@@ -60,7 +60,7 @@
 	    	<option value="강원">강원</option>
 	    	<option value="제주">제주</option>
 	    </select>
-	    <input type="text" id="hosaddr2" placeholder="병원 상세주소" value = "#{hos.hosaddr}" required><br>
+	    <input type="text" id="hosaddr2" placeholder="병원 상세주소" value = "${hos.hosaddr}" required><br>
 	    <h3>영업시간 선택</h3>
 	    시작시간:<select name="hoshour" id="hoshour">
 			<% for (int i = 0; i < 24; i++) { %>
@@ -161,5 +161,7 @@
 	        }
 	    });
     </script>
+    
+    <script src="/js/header.js"></script>
 </body>
 </html>

@@ -84,6 +84,9 @@
 			</div>
 		</section>
 	</div>
+	<footer>
+	<jsp:include page="footer.jsp"></jsp:include>
+</footer>
 
 <script>
 	$('#checkId').click(() => {
@@ -137,8 +140,8 @@
 	        }
 	    });
 </script>
-<footer>
-	<jsp:include page="footer.jsp"></jsp:include>
-</footer>
+
+
+<script src="/js/header.js"></script>
 </body>
 </html>

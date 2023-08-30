@@ -31,5 +31,7 @@
 		document.getElementById("start-time").textContent = formatWithLeadingZero(hoshour) + ":" + formatWithLeadingZero(hosmin);
 		document.getElementById("end-time").textContent = formatWithLeadingZero(hoshour2) + ":" + formatWithLeadingZero(hosmin2);
 	</script>
+	
+	<script src="/js/header.js"></script>
 </body>
 </html>
