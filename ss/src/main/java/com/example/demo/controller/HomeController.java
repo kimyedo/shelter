@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.service.MemberService;
-import com.example.demo.service.ShelterService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,9 +17,6 @@ public class HomeController {
 	
 	@Autowired
 	MemberService mSer;
-	
-//	@Autowired
-//	ShelterService sSer;
 	
 	
 	

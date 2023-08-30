@@ -10,7 +10,7 @@
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+ 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -25,23 +25,24 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <style>
+/*전체화면 고정*/
 body{
 min-width:1920px;
 }
-
+/*카드 글씨 사이즈*/
 .card-text{
 	font-size:13.5px;
 }
-
+/*경매 상자*/
 .card{
 	potion:center;
 	width:600px;
 	height:270px;
-	margin-top: 50px;
+	margin-top:5px;
 	max-width: 500px;
 }
 
-
+/*이미지*/
 .putimg {
 	width: 200px;
 	height: 210px;
@@ -57,49 +58,45 @@ table {
 	height: 200px;
 }
 
-#listcontainer {
-	width: 25%;
-	height: 260px;
+.search-box {
+    position: relative;
+    top: 18px; /* 상단에 고정 */
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    width: 100%;
+    max-width: 1000px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    border: 1px solid #999999;
 }
-.search-box{
-    position: fixed;
-            top: 16%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            height: 60px;
-            width: 100%;
-            max-width: 1000px;
-            z-index: 999;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 30px;
-            border: 1px solid #999999;
+/* 검색창 입력 필드 스타일 */
+.search-txt {
+    margin-top: 20px;
+    margin-right: 20px; /* 조정 필요 */
+    padding: 0;
+    width: 700px; /* 검색창 넓이 */
+    border: none;
+    outline: none;
+    font-size: 18px; /* 검색창 안 글씨 크기 */
+    line-height: 20px;
+    box-sizing: border-box;
 }
-.card-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            z-index: 1;
-        }
-    
-
-.search-txt{
- margin-top: 20px;
- margin-right:250px;
-  padding:0;
-  width: 700px;/*검색창 넒이*/
-  border:none;
-  outline:none; 
-  font-size:18px;/*검색창 안글씨*/
-  line-height:20px;
-   box-sizing: border-box;
-   }
-   
+/* 검색 버튼 스타일 */
+#search-btn {
+    position: absolute;
+    top: 50%;
+    right: 19px;
+    padding: 12px;
+    background-color: #fff;
+    color: black;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+/*입찰 버튼*/   
 #search-btn {
   position: absolute;
   top: 50%; /* Adjusted top value to vertically center the button */
@@ -126,68 +123,52 @@ table {
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
 	
-		<footer>
-		<jsp:include page="footer.jsp"></jsp:include>
-	</footer>
-	
-	  <div class="content">
- <div class="search-box">
 
       <input type="text" class="search-txt" name=""placeholder="동물 이름을 입력하세요"> <button id="search-btn">검색</button>
-</div>
- <div class="card-container">
+
 <!-- 리스트 반복문  -->
-	 <div class="container mt-5">
     <c:forEach items="${AcList}" var="auction" varStatus="status">
-      <c:if test="${status.index % 2 == 0}">
-			<!--   -->
-        <div class="row">
-      </c:if>        
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img class="putimg" src="황민현.jpg" alt="" class="card-img" />            
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">       
-                <p class="card-text">
-               <c:if test="${empty AcList}">
+			    <c:choose>
+			        <c:when test="${auction.sysFileName != null}">
+			            <img src="${auction.sysFileName}" />      
+			        </c:when>
+			        <c:otherwise>
+			            이미지가 없을 경우 표시할 내용
+			            <p>No Image Available</p>
+			        </c:otherwise>
+			    </c:choose>   
+               <c:if test="${empty auction}">
 											<tr>
 												<td colspan="8">데이터가 없습니다</td>
 											</tr>
 										</c:if>
-										<c:if test="${not empty AcList}">
+										<c:if test="${not empty auction}">
 											<%--                     <c:forEach items="${AcList}" var="auction"> --%>
 											<tr>
 												<td>${auction.acnum}</td><br>
 												<td>${auction.id}</td><br>
-												<td>
-													<%--                           <a href="/detail/${auction.acnum}">${auction.image}</a> --%>
-												</td>
-												<td>${auction.animal}</td><br>
+												<td>${auction.ac_animal}</td><br>
+												<td>${auction.ac_gender}</td><br>
+												<td>${auction.ac_age}</td><br>
 												<td>${auction.minprice}</td><br>
 												<td>${auction.toprice}</td><br>
 												<td>${auction.starttime}</td><br>
 												<td>${auction.endtime}</td>
+												<td>${acution.endtime2}</td>
 											</tr>
 
 											<%-- </c:forEach> --%>
 										</c:if>
                 </p>
                 <button type="button" class="btn btn-outline-success">입찰</button>
-              </div>
-            </div>
-          </div>  
-        </div>
-        
-      </div><c:if test="${status.index % 2 == 1 or status.last}">
-        </div>       
-      </c:if>   
+         
 	</c:forEach>
 	
 
-	
+<a  href="/auction/write">글쓰기</a>
+	<footer>
+		<jsp:include page="footer.jsp"  ></jsp:include>
+	</footer>
 
 	<script>
 	document.querySelector('#writeBtn').addEventListener('click', ()=> {

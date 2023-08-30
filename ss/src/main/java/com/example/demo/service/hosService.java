@@ -1,15 +1,12 @@
 package com.example.demo.service;
 
-<<<<<<< HEAD
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-=======
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
->>>>>>> origin/test2
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -75,11 +72,11 @@ public class hosService {
 		return hDao.hosDataSelect(hDto);
 	}
 	
-<<<<<<< HEAD
 	public ResponseEntity<Resource> fileDownload(hosDto hDto, HttpSession session) 
 			throws FileNotFoundException, UnsupportedEncodingException {
 		return fm.hosfileDownload(hDto, session);
-=======
+	}
+	
 	public List<hosDto> findHospitalList(HttpSession session, Model model) {
 		log.info("findHospitalList");
 		MemberDto mDto = (MemberDto)session.getAttribute("mb");
@@ -90,7 +87,5 @@ public class hosService {
     		mDto.setAddr("인천");
     		return hDao.findHospitalList(mDto);
     	}
-    	
->>>>>>> origin/test2
 	}
 }
