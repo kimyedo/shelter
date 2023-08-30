@@ -35,4 +35,7 @@ public interface MemberDao {
 	@Select("SELECT * FROM MEMBER WHERE ID=#{id}")
 	List<MemberDto> findMemberList();
 	
+	@Select("SELECT COUNT(*) FROM MEMBER WHERE ID = #{id}")
+	Integer idcheck(String id);
+	
 }

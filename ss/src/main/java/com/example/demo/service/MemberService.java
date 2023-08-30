@@ -81,4 +81,7 @@ public class MemberService {
 			}
 	
 	
+		public Integer idcheck(String id) {
+			return mDao.idcheck(id);
+		}
 }
