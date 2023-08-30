@@ -115,6 +115,69 @@ margin-left:0.1px;
 button{
     size: 40px;
 }
+#com {
+    background-color: white;
+    border: none;
+    padding: 30px 60px;
+    line-height:1;
+    font-size: 22px;
+    font-family: 'baemin';
+}
+#com:hover {
+    color : #fff2cc;
+}
+#com:active {
+    color : #ffe699;
+}
+#com-toggle {
+    margin-left : 277px;
+}
+.toggle-ul {
+    top : 100px;
+    padding : 0px 0px;
+    position : fixed;
+    width : auto;
+    height : auto;
+    border : 1px solid black;
+    z-index: 1;
+}
+.toggle-li {
+    padding : 15px 15px;
+    display: flex; 
+    align-content: flex-start; 
+    flex-direction: column; 
+    flex-wrap: wrap;
+}
+.toggle-li:hover {
+    background-color: #fff2cc;
+}
+.toggle-li:active {
+    background-color: #ffe699;
+}
+.li:hover {
+    color : #fff2cc;
+}
+.li:active {
+    color : #ffe699;
+}
+#shop {
+    background-color: white;
+    border: none;
+    padding: 30px 60px;
+    line-height:1;
+    font-size: 22px;
+    font-family: 'baemin';
+}
+#shop:hover {
+    color : #fff2cc;
+}
+#shop:active {
+    color : #ffe699;
+}
+#shop-toggle {
+    margin-left : 866px;
+}
+
 #writeBtn{
 	background-color: darkseagreen;
 }
