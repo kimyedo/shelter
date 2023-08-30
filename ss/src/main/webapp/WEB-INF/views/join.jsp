@@ -52,9 +52,6 @@
 				    	<option value="제주">제주</option>
 				    </select>
 				    <input type="text" id="addr2" placeholder="상세주소" required><br>
-					<input name="phone" type="text" class="login-input"  title="연락처"
-						placeholder="연락처"><br>
-						
 					연락처:<select id="phone">
 						<option value="010">010</option>
 					    <option value="02">02</option>
@@ -139,35 +136,6 @@
 	            return;
 	        }
 	    });
-</script>
-<footer>
-	<jsp:include page="footer.jsp"></jsp:include>
-</footer>
-</body>
-</html>					<input  type="button" id="checkId" class="idcheck-btn" value="중복확인"><br>
-					<input name="pw" type="password" class="login-input" 
-						title="비밀번호" placeholder="비밀번호"> <br>
-					<input name="name" type="text"
-						class="login-input"  title="이름" placeholder="이름"> <br>
-					<input name="birth" type="text" class="login-input"  title="생일"
-						placeholder="생일"> <br>
-					<input name="email" type="text" class="login-input"  title="이메일"
-						placeholder="이메일"><br>
-					<input name="addr" type="text" class="login-input"
-						 title="주소" placeholder="주소"><br>
-					<input name="phone" type="text" class="login-input"  title="연락처"
-						placeholder="연락처"><br>
-					<input name="gender" type="text" class="login-input"  title="성별"
-						placeholder="성별"><br>
-					<input type="hidden" value="nor" name="type"><br>
-					<input type="submit" class="login-btn"	value="가입"><br>
-				</form>
-			</div>
-		</section>
-	</div>
-
-<script>
-
 </script>
 <footer>
 	<jsp:include page="footer.jsp"></jsp:include>
