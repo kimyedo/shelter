@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.demo.dto.AuctionDto;
 import com.example.demo.dto.MemberDto;
+import com.example.demo.dto.ProfileDto;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.ProfileService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +30,10 @@ public class MemberController {
 		@Autowired
 		private MemberService mSer;
 		
-		@GetMapping("/login")
+		@Autowired
+		private ProfileService pSer;
+
+		@PostMapping("/login")
 		//public String login(@RequestParam String m_id, 
 		//					@RequestParam("m_pwd") String pw) {
 		public String login(@RequestParam HashMap<String,String> member, RedirectAttributes rttr ,Model model, HttpSession session) {
@@ -36,8 +43,24 @@ public class MemberController {
 			log.info("mb={}",mb); //아이디, 이름, 포인트,등급 확인
 			if(mb!=null) {
 				//session.setAttribute("id", member.get("m_id")); //권장 	
+				List<ProfileDto> pDto = pSer.getProfileSelect(mb.getId());
+				log.info("pDto : {}",pDto);
+				
+			    String imageUrl = ServletUriComponentsBuilder
+			            .fromCurrentContextPath()
+			            .path("/upload")
+			            .toUriString();
+
+			    for (ProfileDto prof : pDto) {
+			    	if(prof.getSysFileName() != null) {
+			    		prof.setSysFileName(imageUrl + "/" + prof.getSysFileName());  // SysFileName 업데이트
+			    	}
+			        log.info(prof.getSysFileName());
+			    }
+				
+				session.setAttribute("pDto",pDto);
 				session.setAttribute("mb", mb);
-				return "MemberDetail";
+				return "redirect:/member/detail";
 				//return "boardList";  //boardList.jsp
 			}else {
 				//model.addAttribute("msg", "로그인 실패"); //request영역에 저장, F5시 반복출력됨
@@ -87,29 +110,32 @@ public class MemberController {
 			}
 			//return view;
 		}
-		@GetMapping("/logout")
-		public String getLogout(HttpSession session, RedirectAttributes rttr) {
-			log.info("get 로그아웃");
-			rttr.addFlashAttribute("msg", "버튼을 눌러 로그아웃 하세요");
-			return "redirect:/board/list"; //.jsp
-		}
-		@PostMapping("/logout")
-		public String postLogout(HttpSession session, RedirectAttributes rttr) {
-			log.info("post 로그아웃");
-			session.invalidate();
-			rttr.addFlashAttribute("msg", "Post로그아웃 성공");
-			return "redirect:/";
-		}
 	
 	@GetMapping("detail")
 	public String detailForm(HttpSession session) {
 		MemberDto mDto = (MemberDto) session.getAttribute("mb");
-		
+
 		if(mDto != null) {
-//			session.setAttribute("mb", mDto);
+			
+			List<ProfileDto> pDto = pSer.getProfileSelect(mDto.getId());
+			log.info("pDto : {}",pDto);
+			
+		    String imageUrl = ServletUriComponentsBuilder
+		            .fromCurrentContextPath()
+		            .path("/upload")
+		            .toUriString();
+
+		    for (ProfileDto prof : pDto) {
+		    	if(prof.getSysFileName() != null) {
+		    		prof.setSysFileName(imageUrl + "/" + prof.getSysFileName());  // SysFileName 업데이트
+		    	}
+		        log.info(prof.getSysFileName());
+		    }
+			
+			session.setAttribute("pDto",pDto);
 			return "MemberDetail";
 		} else {
-			return "redirect:/member/login";
+			return "redirect:/login";
 		}
 	}
 	
@@ -153,81 +179,6 @@ public class MemberController {
 			return "MemberUpdate";
 		}
 	}
-	@GetMapping("/findPw1")
-	public String findPwForm(HttpSession session) {
-		return "findPw1";
-	}
 	
-	@PostMapping("/findPw1")
-	public String findPwidCheck(MemberDto mDto,HttpSession session,RedirectAttributes rttr) {
-		boolean result;
-		try {
-			result = mSer.findPwidCheck(mDto.getId());
-			
-			if(result) {
-//				model.addAttribute("msg","회원가입 성공");
-				rttr.addFlashAttribute("msg","회원정보 수정 성공");
-				//mDto = mSer.login(member);
-				session.setAttribute("id", mDto.getId());
-//				return "redirect:/";
-				return "redirect:/member/findPw2";
-				//return "redirect:/"; //redirect:/url
-			} else {
-				rttr.addFlashAttribute("msg","회원정보 수정 실패");
-				log.info("회원정보 수정 예외 처리");
-				return "findPw1";
-			}
-		} catch (Exception e) {
-			rttr.addFlashAttribute("msg","회원정보 수정 실패");
-			log.info("회원정보 수정 예외 처리");
-			return "findPw1";
-		}
-	}
-	
-	
-	
-	
-	
-	@GetMapping("/findPw2")
-	public String pwChange() {
-		return "findPw2";
-	}
-	
-	@PostMapping("/findPw2")
-	public String pwChange(MemberDto mDto, HttpSession session) throws IOException{
-		boolean result;
-		
-		try {
-			result = mSer.pwChange(mDto);
-			
-			if(result) {
-//				model.addAttribute("msg","회원가입 성공");
-//				rttr.addFlashAttribute("msg","회원정보 수정 성공");
-//				return "redirect:/";
-				return "redirect:/member/login";
-				//return "redirect:/"; //redirect:/url
-			} else {
-	//			rttr.addFlashAttribute("msg","회원정보 수정 실패");
-				log.info("회원정보 수정 예외 처리");
-				return "redirect:/";
-			}
-		} catch (Exception e) {
-		//	rttr.addFlashAttribute("msg","회원정보 수정 실패");
-			log.info("회원정보 수정 예외 처리");
-			return "redirect:/";
-		}
-	}
-
-	@GetMapping("/list")
-	public String profile(HttpSession session) {
-		MemberDto mDto = (MemberDto) session.getAttribute("mb");
-		
-		if(mDto != null) {
-//			session.setAttribute("mb", mDto);
-			return "profile";
-		} else {
-			return "redirect:/member/login";
-		}
-	}
 	
 }

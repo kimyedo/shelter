@@ -79,6 +79,10 @@ public class MemberService {
 			List<MemberDto> mList=mDao.findMemberList();
 			return mList;
 			}
+		
+		public Integer idcheck(String id) {
+			return mDao.idcheck(id);
+		}
 	
 	
 }

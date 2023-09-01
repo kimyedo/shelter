@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dao.AuctionDao;
+import com.example.demo.dao.ProfileDao;
 import com.example.demo.dao.hosDao;
 import com.example.demo.dto.ShelterDto;
 import com.example.demo.dto.hosDto;
@@ -46,6 +47,9 @@ public class FileManager {
 	
 	@Autowired
 	private AuctionDao aDao;
+	
+	@Autowired
+	private ProfileDao pDao;
 
 	//파일 업로드, DB 저장
 	public boolean hosfileUpload(MultipartFile attachments, HttpSession session, String code) {
@@ -178,6 +182,58 @@ public class FileManager {
 
 		    // 파일 정보 DB에 저장
 		    result = aDao.fileInsertMap(fMap);
+		    if (!result) {
+		        System.out.println("File insertion failed.");
+		    }
+		} catch (IOException e) {
+		    System.out.println(e.getMessage());
+		    System.out.println("파일업로드 예외 발생");
+		    e.printStackTrace();
+		    result = false;
+		}
+		return result;
+	}
+
+	public boolean proffileUpload(MultipartFile attachments, HttpSession session, String animal) {
+		log.info("File Manager class");
+		//프로젝트의 upload 경로 찾기
+	    String rootPath = session.getServletContext().getRealPath("/");
+	    String uploadDirectory = rootPath + "upload/";
+
+		//2. 폴더 생성을 꼭 할 것...
+		File dir = new File(uploadDirectory);
+		if(dir.isDirectory() == false) { //upload 폴더 없다면
+			dir.mkdir(); //uploade 폴더 생성 mkdirs로 사용 시 다단 폴더까지 생성해줌.
+		}
+		//파일의 정보를 BoardFile or HashMap에 저장
+		Map<String, String> fMap = new HashMap<String, String>();
+		fMap.put("animal", animal);  
+		boolean result = false;
+		
+		// 파일 메모리에 저장
+		String oriFileName = attachments.getOriginalFilename(); // a.txt
+		if(oriFileName.equals("")){
+			return false;
+		}
+		log.info("원조 파일 : {}",oriFileName);
+		fMap.put("oriFileName", oriFileName);
+		// 4.시스템파일이름 생성 a.txt ==>112323242424.txt
+		String sysFileName = System.currentTimeMillis() + "."
+				+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);
+		log.info("서버 파일 : {}",sysFileName);
+		fMap.put("sysFileName", sysFileName);
+		// 5.메모리->실제 파일 업로드
+		
+		try {
+		    // 상대 경로로 파일 저장
+	        Path filePath = Paths.get(uploadDirectory, sysFileName);
+	        Files.copy(attachments.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+	        // 파일 경로 저장
+	        fMap.put("filePath", filePath.toString());
+
+		    // 파일 정보 DB에 저장
+		    result = pDao.proffileInsertMap(fMap);
 		    if (!result) {
 		        System.out.println("File insertion failed.");
 		    }
