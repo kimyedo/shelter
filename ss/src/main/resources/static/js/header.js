@@ -26,5 +26,5 @@
 		$('#shop-toggle').hide();
 	})
 	$('#shop').click(()=> {
-		location.href = "/shop";
+		location.href = "/shopping/list";
 	})
